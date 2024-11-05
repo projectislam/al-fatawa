@@ -1,6 +1,7 @@
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
+import { SQLiteProvider } from "expo-sqlite";
 import { useEffect } from "react";
 import "react-native-reanimated";
 
@@ -23,9 +24,17 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack>
-      <Stack.Screen name="index" />
-      <Stack.Screen name="+not-found" />
-    </Stack>
+    <SQLiteProvider
+      databaseName="fatawa.db"
+      assetSource={{ assetId: require("../assets/fatawa.db") }}
+    >
+      <Stack>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="search" />
+        <Stack.Screen name="results" />
+        <Stack.Screen name="detail" />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+    </SQLiteProvider>
   );
 }
