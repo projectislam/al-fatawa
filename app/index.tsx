@@ -14,7 +14,7 @@ import {
   View,
 } from "react-native";
 
-const HomeScreen = () => {
+export default function HomeScreen() {
   const db = useSQLiteContext();
 
   const [darUlIftaData, setDarUlIftaData] = useState<DarUlIfta[]>([]);
@@ -177,7 +177,7 @@ const HomeScreen = () => {
       </View>
     </ScrollView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 10 },
@@ -207,5 +207,3 @@ const styles = StyleSheet.create({
   },
   loadingText: { marginTop: 10, fontSize: 16, color: "#000" },
 });
-
-export default HomeScreen;

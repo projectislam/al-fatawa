@@ -13,7 +13,7 @@ import {
   View,
 } from "react-native";
 
-const ResultsScreen = () => {
+export default function ResultsScreen() {
   const db = useSQLiteContext();
   const route = useRoute();
   const { fasalId } = route.params as { fasalId: number };
@@ -27,7 +27,7 @@ const ResultsScreen = () => {
       setLoading(true);
 
       const statement = await db.prepareAsync(
-        `SELECT f.id, f.title, d.name AS darUlIftaName, f.issued_at AS issuedAt
+        `SELECT f.id, f.title, d.name, f.issued_at
            FROM fatwa f
            JOIN dar_ul_ifta d ON f.dar_ul_ifta = d.id
            WHERE f.fasal = $fasalId`
@@ -83,7 +83,7 @@ const ResultsScreen = () => {
       />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -113,5 +113,3 @@ const styles = StyleSheet.create({
     color: "#555",
   },
 });
-
-export default ResultsScreen;
