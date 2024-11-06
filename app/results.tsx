@@ -16,39 +16,97 @@ import {
 export default function ResultsScreen() {
   const db = useSQLiteContext();
   const route = useRoute();
-  const { fasalId } = route.params as { fasalId: number };
+  const routeParams = route.params as any;
 
-  const [fatawa, setFatawa] = useState<Fatawa[]>([]);
+  const [results, setResults] = useState<Fatawa[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch fatawa related to the selected fasal
   useEffect(() => {
-    const fetchFatawa = async () => {
-      setLoading(true);
+    console.log(routeParams, Date.now());
+    searchFatawa();
+  }, [routeParams]);
 
-      const statement = await db.prepareAsync(
-        `SELECT f.id, f.title, d.name, f.issued_at
-           FROM fatwa f
-           JOIN dar_ul_ifta d ON f.dar_ul_ifta = d.id
-           WHERE f.fasal = $fasalId`
-      );
+  const searchFatawa = async () => {
+    setLoading(true);
 
-      try {
-        const result = await statement.executeAsync({ $fasalId: fasalId });
-        const rows = await result.getAllAsync();
-        setFatawa(rows as Fatawa[]);
-        setLoading(false);
-      } catch (error) {
-        Alert.alert("Error", "Failed to load fatawa.");
-        console.error(error);
-      } finally {
-        setLoading(false);
-        await statement.finalizeAsync();
+    const filters = JSON.parse(routeParams.filters);
+
+    let query = `SELECT * FROM fatwa`;
+    const params: Record<string, any> = {};
+
+    if (filters.query) {
+      query += ` WHERE title LIKE '%${filters.query}%'`;
+      // params.$query = filters.query;
+    }
+
+    if (filters.fasalId) {
+      if (query.includes("WHERE")) {
+        query += " AND fasal = $fasalId";
+      } else {
+        query += " WHERE fasal = $fasalId";
       }
-    };
+      params.$fasalId = filters.fasalId;
+    }
 
-    fetchFatawa();
-  }, [fasalId]);
+    if (filters.kitab) {
+      if (query.includes("WHERE")) {
+        query += " AND kitab = $kitabId";
+      } else {
+        query += " WHERE kitab = $kitabId";
+      }
+      params.$kitabId = filters.kitab;
+    }
+
+    if (filters.bab) {
+      if (query.includes("WHERE")) {
+        query += " AND bab = $babId";
+      } else {
+        query += " WHERE bab = $babId";
+      }
+      params.$babId = filters.bab;
+    }
+
+    if (filters.fasal) {
+      if (query.includes("WHERE")) {
+        query += " AND bab = $babId";
+      } else {
+        query += " WHERE bab = $babId";
+      }
+      params.$fasalId = filters.fasal;
+    }
+
+    if (filters.fatawaNumber) {
+      if (query.includes("WHERE")) {
+        query += " AND fatwa_number = $fatawaNumber";
+      } else {
+        query += " WHERE fatwa_number = $fatawaNumber";
+      }
+      params.$fatawaNumber = filters.fatawaNumber;
+    }
+
+    if (filters.darUlIfta) {
+      if (query.includes("WHERE")) {
+        query += " AND dar_ul_ifta = $darUlIfta";
+      } else {
+        query += " WHERE dar_ul_ifta = $darUlIfta";
+      }
+      params.$darUlIfta = filters.darUlIfta;
+    }
+
+    const statement = await db.prepareAsync(query);
+
+    try {
+      const result = await statement.executeAsync(params);
+      const rows = await result.getAllAsync();
+      setResults(rows as Fatawa[]);
+    } catch (error: any) {
+      Alert.alert("Search error", error.message);
+      console.log(error);
+    } finally {
+      setLoading(false);
+      await statement.finalizeAsync();
+    }
+  };
 
   const handleFatwaClick = (fatwaId: number) => {
     router.navigate({ pathname: "/detail", params: { fatwaId } });
@@ -67,7 +125,7 @@ export default function ResultsScreen() {
   return (
     <View style={styles.container}>
       <FlatList
-        data={fatawa}
+        data={results}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <View style={styles.fatwaCard}>

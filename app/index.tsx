@@ -91,7 +91,10 @@ export default function HomeScreen() {
   };
 
   const handleFasalClick = (fasalId: number) => {
-    router.navigate({ pathname: "/results", params: { fasalId } });
+    router.navigate({
+      pathname: "/results",
+      params: { filters: JSON.stringify({ fasalId }) },
+    });
   };
 
   const filteredBabData = expandedKitab
