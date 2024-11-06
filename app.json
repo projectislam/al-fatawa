@@ -26,9 +26,23 @@
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": ["expo-router"],
+    "plugins": [
+      "expo-router"
+    ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a407d476-a88e-4c42-8c91-a490e2ed1632"
+      }
+    },
+    "owner": "azeemhaider",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/a407d476-a88e-4c42-8c91-a490e2ed1632"
     }
   }
 }
