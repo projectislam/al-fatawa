@@ -1,6 +1,5 @@
 import UrduText from "@/components/UrduText";
 import { useRoute } from "@react-navigation/native";
-import { router } from "expo-router";
 import { useSQLiteContext } from "expo-sqlite";
 import React, { useEffect, useRef, useState } from "react";
 import {
@@ -33,7 +32,6 @@ export default function DetailScreen() {
   const webViewRef = useRef(null);
 
   const route = useRoute();
-  const params = route.params as { fatawaId?: number; link?: string };
   const { fatwaId } = route.params as { fatwaId: number };
 
   const [fatwa, setFatwa] = useState<FatwaDetails | null>(null);
@@ -50,9 +48,6 @@ export default function DetailScreen() {
            JOIN dar_ul_ifta d ON f.dar_ul_ifta = d.id
            WHERE f.id = $fatwaId`
       );
-
-      if (params?.url) {
-      }
 
       try {
         const result = await statement.executeAsync({ $fatwaId: fatwaId });
@@ -74,7 +69,7 @@ export default function DetailScreen() {
     const url = decodeURI(request.url);
 
     if (url.includes("banuri.edu.pk/readquestion")) {
-      router.navigate({ pathname: "/detail", params: { link: url } });
+      console.log("Fetch fatawa detail");
 
       return false;
     }
