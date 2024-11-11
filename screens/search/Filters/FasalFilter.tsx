@@ -29,7 +29,7 @@ const FasalFilter = () => {
       >
         <Picker.Item label="All" value="" />
         {options.map((opt) => (
-          <Picker.Item key={opt.id} label={opt.urdu} value={opt.id} />
+          <Picker.Item key={opt.id} label={opt.name} value={opt.id} />
         ))}
       </Picker>
     </View>

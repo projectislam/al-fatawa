@@ -16,7 +16,7 @@ const KitabFilter = () => {
       >
         <Picker.Item label="All" value="" />
         {data?.kitabList.map((k) => (
-          <Picker.Item key={k.id} label={k.urdu} value={k.id} />
+          <Picker.Item key={k.id} label={k.name} value={k.id} />
         ))}
       </Picker>
     </View>

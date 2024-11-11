@@ -9,24 +9,21 @@ interface DarUlIfta {
 interface Kitab {
   id: number;
   en_id: string;
-  urdu: string;
-  dar_ul_ifta: DarUlIfta | number;
+  name: string;
 }
 
 interface Bab {
   id: number;
   en_id: string;
-  urdu: string;
+  name: string;
   kitab: Kitab | number;
-  dar_ul_ifta: DarUlIfta | number;
 }
 
 interface Fasal {
   id: number;
   en_id: string;
-  urdu: string;
+  name: string;
   bab: Bab | number;
-  dar_ul_ifta: DarUlIfta | number;
 }
 
 interface Fatwa {
