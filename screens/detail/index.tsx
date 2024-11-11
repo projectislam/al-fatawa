@@ -15,6 +15,7 @@ const DetailScreen = () => {
   }
 
   if (error) {
+    console.log(error);
     return <ErrorMessage error={error} />;
   }
 

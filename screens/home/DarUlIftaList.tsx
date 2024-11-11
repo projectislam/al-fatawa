@@ -1,13 +1,19 @@
+import ErrorMessage from "@/components/ErrorMessage";
 import Loading from "@/components/Loading";
 import UrduText from "@/components/UrduText";
 import { FlatList, View } from "react-native";
 import { useData } from "./useData";
 
 const DarUlIftaList = () => {
-  const { data, loading } = useData();
+  const { data, loading, error } = useData();
 
   if (loading) {
     return <Loading />;
+  }
+
+  if (error) {
+    console.log(error);
+    return <ErrorMessage error={error} />;
   }
 
   return (

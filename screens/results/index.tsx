@@ -1,7 +1,12 @@
 import { StyleSheet, View } from "react-native";
+import ResultList from "./ResultList";
 
 const ResultsScreen = () => {
-  return <View style={styles.container}></View>;
+  return (
+    <View style={styles.container}>
+      <ResultList />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

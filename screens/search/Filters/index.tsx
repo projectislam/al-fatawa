@@ -1,3 +1,4 @@
+import ErrorMessage from "@/components/ErrorMessage";
 import Loading from "@/components/Loading";
 import { View } from "react-native";
 import BabFilter from "./BabFilter";
@@ -8,10 +9,15 @@ import KitabFilter from "./KitabFilter";
 import { useData } from "./useData";
 
 const Filters = () => {
-  const { loading } = useData();
+  const { loading, error } = useData();
 
   if (loading) {
     return <Loading />;
+  }
+
+  if (error) {
+    console.log(error);
+    return <ErrorMessage error={error} />;
   }
 
   return (
