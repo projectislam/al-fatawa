@@ -17,7 +17,7 @@ export const useData = () => {
 
   const loadData = async () => {
     let query = `
-        SELECT fatwa.id, fatwa.title, fatwa.content,
+        SELECT fatwa.*,
                bm25(fatwa_fts) AS score
         FROM fatwa_fts
         JOIN fatwa ON fatwa_fts.rowid = fatwa.id
@@ -27,29 +27,50 @@ export const useData = () => {
     try {
       const filters = JSON.parse(params.filters);
 
-      // Local helper function
-      const addFilter = (field: string, param: any) => {
-        query += `${
-          query.includes("WHERE") ? " AND" : " WHERE"
-        } ${field} = $${param}`;
-        queryParams[`$${param}`] = filters[param];
-      };
-
       if (filters.fatwaNumber) {
-        addFilter("fatwa_number", "fatwaNumber");
+        query += " WHERE fatawa_number = $fatwaNumber";
+        queryParams.$fatwaNumber = filters.fatwaNumber;
       } else {
         if (filters.query) {
           query += " WHERE title MATCH '$searchQuery'";
           queryParams.$searchQuery = filters.query;
         }
 
-        ["fasal", "bab", "kitab"].forEach(
-          (key) => filters[key] && addFilter(key, key)
-        );
+        if (filters.fasal) {
+          if (query.includes("WHERE")) {
+            query += " AND fasal = $fasal";
+          } else {
+            query += " WHERE fasal = $fasal";
+          }
+
+          queryParams.$fasal = filters.fasal;
+        } else if (filters.bab) {
+          if (query.includes("WHERE")) {
+            query += " AND bab = $bab";
+          } else {
+            query += " WHERE bab = $bab";
+          }
+
+          queryParams.$bab = filters.bab;
+        } else if (filters.kitab) {
+          if (query.includes("WHERE")) {
+            query += " AND kitab = $kitab";
+          } else {
+            query += " WHERE kitab = $kitab";
+          }
+
+          queryParams.$kitab = filters.kitab;
+        }
       }
 
       if (filters.darUlIfta) {
-        addFilter("dar_ul_ifta", "darUlIfta");
+        if (query.includes("WHERE")) {
+          query += " AND dar_ul_ifta = $darUlIfta";
+        } else {
+          query += " WHERE dar_ul_ifta = $darUlIfta";
+        }
+
+        queryParams.$darUlIfta = filters.darUlIfta;
       }
 
       if (filters.query) {

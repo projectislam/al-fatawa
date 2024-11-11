@@ -31,7 +31,7 @@ interface Fasal {
 
 interface Fatwa {
   id: number;
-  fatawa_number: number;
+  fatwa_number: number;
   dar_ul_ifta: DarUlIfta | number;
   link: string;
   title: string;

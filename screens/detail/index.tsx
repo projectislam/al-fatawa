@@ -30,7 +30,7 @@ const DetailScreen = () => {
       <Answer text={data.answer} />
       <FatwaInfo
         darUlIfta={data.dar_ul_ifta}
-        fatwaNumber={data.fatawa_number}
+        fatwaNumber={data.fatwa_number}
         issuedAt={data.issued_at}
       />
     </ScrollView>
