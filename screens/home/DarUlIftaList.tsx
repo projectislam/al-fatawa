@@ -1,7 +1,7 @@
 import Loading from "@/components/Loading";
 import UrduText from "@/components/UrduText";
 import { FlatList, View } from "react-native";
-import useData from "./useData";
+import { useData } from "./useData";
 
 const DarUlIftaList = () => {
   const { data, loading } = useData();

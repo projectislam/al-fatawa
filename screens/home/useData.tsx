@@ -1,7 +1,7 @@
 import { useSQLiteContext } from "expo-sqlite";
 import { useEffect, useState } from "react";
 
-const useData = () => {
+export const useData = () => {
   const db = useSQLiteContext();
   const [data, setData] = useState<DarUlIfta[]>([]);
   const [loading, setLoading] = useState(true);
@@ -24,5 +24,3 @@ const useData = () => {
 
   return { data, loading, error };
 };
-
-export default useData;

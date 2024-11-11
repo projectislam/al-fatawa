@@ -1,6 +1,6 @@
 import { ScrollView, StyleSheet, View } from "react-native";
+import SearchBar from "../../components/SearchBar";
 import DarUlIftaList from "./DarUlIftaList";
-import SearchBar from "./SearchBar";
 
 const HomeScreen = () => {
   return (

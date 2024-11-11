@@ -1,7 +1,7 @@
 import { router } from "expo-router";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 
-type Ctx = {
+export type Ctx = {
   filters: {
     query?: string;
     kitab?: number;

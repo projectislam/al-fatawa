@@ -29,7 +29,7 @@ interface Fasal {
   dar_ul_ifta: DarUlIfta | number;
 }
 
-interface Fatawa {
+interface Fatwa {
   id: number;
   fatawa_number: number;
   dar_ul_ifta: DarUlIfta | number;
