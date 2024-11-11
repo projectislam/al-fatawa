@@ -1,4 +1,5 @@
 import { Picker } from "@react-native-picker/picker";
+import { useMemo } from "react";
 import { Text, View } from "react-native";
 import { useSearchContext } from "../context/searchContext";
 import { useData } from "./useData";
@@ -6,6 +7,18 @@ import { useData } from "./useData";
 const FasalFilter = () => {
   const { data } = useData();
   const { filters, applyFilter } = useSearchContext();
+
+  const options = useMemo(() => {
+    if (filters.bab) {
+      return data?.fasalList.filter((f) => f.bab == filters.bab) || [];
+    }
+
+    // if(filters.kitab) {
+    //   return data?.fasalList.filter(f => f.bab.kitab == filters.kitab) || []
+    // }
+
+    return data?.fasalList || [];
+  }, [filters]);
 
   return (
     <View>
@@ -15,8 +28,8 @@ const FasalFilter = () => {
         onValueChange={(value) => applyFilter("fasal", value)}
       >
         <Picker.Item label="All" value="" />
-        {data?.fasalList.map((f) => (
-          <Picker.Item key={f.id} label={f.urdu} value={f.id} />
+        {options.map((opt) => (
+          <Picker.Item key={opt.id} label={opt.urdu} value={opt.id} />
         ))}
       </Picker>
     </View>

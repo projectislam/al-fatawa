@@ -1,4 +1,5 @@
 import { Picker } from "@react-native-picker/picker";
+import { useMemo } from "react";
 import { Text, View } from "react-native";
 import { useSearchContext } from "../context/searchContext";
 import { useData } from "./useData";
@@ -6,6 +7,14 @@ import { useData } from "./useData";
 const BabFilter = () => {
   const { data } = useData();
   const { filters, applyFilter } = useSearchContext();
+
+  const options = useMemo(() => {
+    if (filters.kitab) {
+      return data?.babList.filter((b) => b.kitab == filters.kitab) || [];
+    }
+
+    return data?.babList || [];
+  }, [filters]);
 
   return (
     <View>
@@ -15,8 +24,8 @@ const BabFilter = () => {
         onValueChange={(value) => applyFilter("bab", value)}
       >
         <Picker.Item label="All" value="" />
-        {data?.babList.map((b) => (
-          <Picker.Item key={b.id} label={b.urdu} value={b.id} />
+        {options.map((opt) => (
+          <Picker.Item key={opt.id} label={opt.urdu} value={opt.id} />
         ))}
       </Picker>
     </View>
