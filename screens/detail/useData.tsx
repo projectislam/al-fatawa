@@ -24,7 +24,8 @@ export const useData = () => {
       const result = await statement.executeAsync({ $id: fatwaId });
       const row = await result.getFirstAsync();
       setData(row as Fatwa);
-    } catch {
+    } catch (error) {
+      setError(error);
     } finally {
       setLoading(false);
     }

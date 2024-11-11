@@ -1,4 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
+import UrduText from "@/components/UrduText";
+import { t } from "@/locales/i18n";
+import { StyleSheet, View } from "react-native";
 
 type Props = {
   darUlIfta: number | DarUlIfta;
@@ -9,9 +11,15 @@ type Props = {
 const FatwaInfo = ({ darUlIfta, issuedAt, fatwaNumber }: Props) => {
   return (
     <View>
-      <Text style={styles.subText}>Dar-ul-Ifta: {darUlIfta as any}</Text>
-      <Text style={styles.subText}>Issued at: {issuedAt}</Text>
-      <Text style={styles.subText}>Fatwa Number: {fatwaNumber}</Text>
+      <UrduText style={styles.subText}>
+        {t("dar_ul_ifta")}: {darUlIfta as any}
+      </UrduText>
+      <UrduText style={styles.subText}>
+        {t("issued_at")}: {issuedAt}
+      </UrduText>
+      <UrduText style={styles.subText}>
+        {t("fatwa_number")}: {fatwaNumber}
+      </UrduText>
     </View>
   );
 };

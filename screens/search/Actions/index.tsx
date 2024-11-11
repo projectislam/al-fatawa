@@ -1,3 +1,4 @@
+import { t } from "@/locales/i18n";
 import { Button, View } from "react-native";
 import { useSearchContext } from "../context/searchContext";
 
@@ -6,7 +7,7 @@ const SearchActions = () => {
 
   return (
     <View>
-      <Button title="Search" onPress={handleSearch} />
+      <Button title={t("search")} onPress={handleSearch} />
     </View>
   );
 };

@@ -1,14 +1,9 @@
 import ErrorMessage from "@/components/ErrorMessage";
 import Loading from "@/components/Loading";
 import UrduText from "@/components/UrduText";
+import { t } from "@/locales/i18n";
 import { router } from "expo-router";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useData } from "./useData";
 
 const ResultList = () => {
@@ -41,10 +36,12 @@ const ResultItem = ({ item }: { item: Fatwa }) => {
     <View style={styles.fatwaCard}>
       <TouchableOpacity onPress={() => handleFatwaClick(item.id)}>
         <UrduText style={styles.title}>{item.title}</UrduText>
-        <Text style={styles.subText}>
-          Dar-ul-Ifta: {(item.dar_ul_ifta as DarUlIfta)?.name}
-        </Text>
-        <Text style={styles.subText}>Issued: {item.issued_at}</Text>
+        <UrduText style={styles.subText}>
+          {t("dar_ul_ifta")}: {(item.dar_ul_ifta as DarUlIfta)?.name}
+        </UrduText>
+        <UrduText style={styles.subText}>
+          {t("issued_at")}: {item.issued_at}
+        </UrduText>
       </TouchableOpacity>
     </View>
   );

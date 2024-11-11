@@ -1,3 +1,4 @@
+import { t } from "@/locales/i18n";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import UrduText from "./UrduText";
 
@@ -5,7 +6,7 @@ export default function Loading() {
   return (
     <View style={styles.loadingContainer}>
       <ActivityIndicator />
-      <UrduText>Loading...</UrduText>
+      <UrduText>{t("loading")}</UrduText>
     </View>
   );
 }

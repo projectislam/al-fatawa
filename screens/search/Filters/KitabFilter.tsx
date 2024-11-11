@@ -1,5 +1,7 @@
+import UrduText from "@/components/UrduText";
+import { t } from "@/locales/i18n";
 import { Picker } from "@react-native-picker/picker";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { useSearchContext } from "../context/searchContext";
 import { useData } from "./useData";
 
@@ -9,12 +11,12 @@ const KitabFilter = () => {
 
   return (
     <View>
-      <Text>Filter by Kitab:</Text>
+      <UrduText>{t("filter_by_kitab")}:</UrduText>
       <Picker
         selectedValue={filters.kitab}
         onValueChange={(value) => applyFilter("kitab", value)}
       >
-        <Picker.Item label="All" value="" />
+        <Picker.Item label={t("all")} value="" />
         {data?.kitabList.map((k) => (
           <Picker.Item key={k.id} label={k.name} value={k.id} />
         ))}

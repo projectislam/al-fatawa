@@ -1,5 +1,7 @@
+import UrduText from "@/components/UrduText";
+import { t } from "@/locales/i18n";
 import { Picker } from "@react-native-picker/picker";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { useSearchContext } from "../context/searchContext";
 import { useData } from "./useData";
 
@@ -9,12 +11,12 @@ const DarUlIftaFilter = () => {
 
   return (
     <View>
-      <Text>Filter by Dar ul Ifta:</Text>
+      <UrduText>{t("filter_by_dar_ul_ifta")}:</UrduText>
       <Picker
         selectedValue={filters.darUlIfta}
         onValueChange={(value) => applyFilter("darUlIfta", value)}
       >
-        <Picker.Item label="All" value="" />
+        <Picker.Item label={t("all")} value="" />
         {data?.darUlIftaList.map((df) => (
           <Picker.Item key={df.id} label={df.name} value={df.id} />
         ))}

@@ -1,3 +1,4 @@
+import { t } from "@/locales/i18n";
 import { Picker } from "@react-native-picker/picker";
 import { useMemo } from "react";
 import { Text, View } from "react-native";
@@ -22,12 +23,12 @@ const FasalFilter = () => {
 
   return (
     <View>
-      <Text>Filter by Fasal:</Text>
+      <Text>{t("filter_by_fasal")}:</Text>
       <Picker
         selectedValue={filters.fasal}
         onValueChange={(value) => applyFilter("fasal", value)}
       >
-        <Picker.Item label="All" value="" />
+        <Picker.Item label={t("all")} value="" />
         {options.map((opt) => (
           <Picker.Item key={opt.id} label={opt.name} value={opt.id} />
         ))}

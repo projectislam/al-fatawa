@@ -1,3 +1,4 @@
+import { t } from "@/locales/i18n";
 import { router } from "expo-router";
 import { StyleSheet, TextInput, TouchableOpacity } from "react-native";
 
@@ -6,7 +7,7 @@ const SearchBar = () => {
     <TouchableOpacity onPress={() => router.push("/search")}>
       <TextInput
         style={styles.searchInput}
-        placeholder="Search..."
+        placeholder={t("search_placeholder")}
         editable={false}
       />
     </TouchableOpacity>

@@ -1,3 +1,4 @@
+import { t } from "@/locales/i18n";
 import { useState } from "react";
 import { Text, TextInput, View } from "react-native";
 
@@ -9,7 +10,7 @@ const SearchInput = () => {
       <Text>Search Query:</Text>
       <TextInput
         style={{ borderBottomWidth: 1, marginBottom: 16, padding: 8 }}
-        placeholder="Enter search query"
+        placeholder={t("search_placeholder")}
         value={query}
         onChangeText={setQuery}
       />

@@ -1,0 +1,17 @@
+{
+  "search_placeholder": "Search...",
+  "loading": "Loading...",
+  "dar_ul_ifta": "Dar ul ifta",
+  "issued_at": "Issued At",
+  "fatwa_number": "Fatwa Number",
+  "no_detail_found": "No detail found",
+  "question": "Question",
+  "search": "Search",
+  "enter_fatwa_number": "Enter Fatawa Number",
+  "all": "All",
+  "filter_by_bab": "Filter by Bab",
+  "filter_by_dar_ul_ifta": "Filter by Dar ul Ifta",
+  "filter_by_fasal": "Filter by Fasal",
+  "filter_by_fatwa_number": "Filter by Fatwa Number",
+  "filter_by_kitab": "Filter by Kitab"
+}

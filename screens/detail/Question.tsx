@@ -1,5 +1,6 @@
 import UrduText from "@/components/UrduText";
-import { StyleSheet, Text, View } from "react-native";
+import { t } from "@/locales/i18n";
+import { StyleSheet, View } from "react-native";
 
 type Props = {
   text: string;
@@ -8,7 +9,7 @@ type Props = {
 const Question = ({ text }: Props) => {
   return (
     <View>
-      <Text style={styles.sectionTitle}>Question</Text>
+      <UrduText style={styles.sectionTitle}>{t("question")}</UrduText>
       <UrduText style={styles.content}>{text}</UrduText>
     </View>
   );

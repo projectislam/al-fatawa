@@ -1,6 +1,8 @@
 import ErrorMessage from "@/components/ErrorMessage";
 import Loading from "@/components/Loading";
-import { ScrollView, StyleSheet, Text } from "react-native";
+import UrduText from "@/components/UrduText";
+import { t } from "@/locales/i18n";
+import { ScrollView, StyleSheet } from "react-native";
 import Answer from "./Answer";
 import FatwaInfo from "./FatwaInfo";
 import Question from "./Question";
@@ -20,7 +22,7 @@ const DetailScreen = () => {
   }
 
   if (!data) {
-    return <Text>No detail found</Text>;
+    return <UrduText>{t("no_detail_found")}</UrduText>;
   }
 
   return (
