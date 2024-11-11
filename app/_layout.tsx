@@ -25,8 +25,8 @@ export default function RootLayout() {
 
   return (
     <SQLiteProvider
-      databaseName="fatawa.db"
-      assetSource={{ assetId: require("../assets/fatawa.db") }}
+      databaseName="v0.db"
+      assetSource={{ assetId: require("../assets/v0.db") }}
     >
       <Stack>
         <Stack.Screen name="index" />
